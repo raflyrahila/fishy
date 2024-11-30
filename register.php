@@ -1,10 +1,24 @@
 <?php
-require_once 'auth.php';
+require_once 'controller/auth.php';
 // Memeriksa apakah form registrasi telah dikirim
 if($user->isLogin()){
     header('Location: index.php');
     exit;
 }
+if(isset($_POST['username'])){
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $alamat = $_POST['alamat'];
+    $no_telepon = $_POST['no_telepon'];
+    if($user->register($username, $email, $password, $alamat, $no_telepon)){
+        header('Location: login.php');
+        exit;
+    }else{
+        $error = $user->getError();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -44,8 +58,12 @@ if($user->isLogin()){
                     <input type="password" id="password" name="password" required>
                 </div>
                 <div class="form-group">
-                    <label for="confirm-password">Konfirmasi Password:</label>
-                    <input type="password" id="confirm-password" name="confirm-password" required>
+                    <label for="alamat">Alamat:</label>
+                    <input type="text" id="alamat" name="alamat" required>
+                </div>
+                <div class="form-group">
+                    <label for="no telepon">No. Telepon:</label>
+                    <input type="text" id="no telepon" name="no telepon" required>
                 </div>
                 <button type="submit" class="cta">Daftar</button>
             </form>

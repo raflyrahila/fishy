@@ -1,5 +1,5 @@
 <?php
-require_once 'koneksi.php';
+require_once 'controller/koneksi.php';
 // Memeriksa apakah form login telah dikirim
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Mendapatkan data login dari form
@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     // Jika login berhasil, redirect ke halaman yang sesuai
-    header('Location: index.php');
+    header('Location: ');
     exit;
 }
 ?>

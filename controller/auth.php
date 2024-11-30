@@ -12,13 +12,15 @@ class Auth{
         }
     }
 
-    public function register($name, $email, $password){
+    public function register($nama, $email, $password, $alamat, $no_telepon){
         try{
-            $sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+            $sql = "INSERT INTO users (nama, email, password, alamat,no_telepon, role ) VALUES (:nama, :email, :password, :alamat, :no_telepon, 'user')";
             $stmt = $this->connection->prepare($sql);
-            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':nama', $nama);
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':password', password_hash($password, PASSWORD_DEFAULT));
+            $stmt->bindParam(':alamat', $alamat);
+            $stmt->bindParam(':no_telepon', $no_telepon);
             $stmt->execute();
             return true;
         } catch(PDOException $e){
@@ -44,6 +46,11 @@ class Auth{
             return false;
         }
     }
+
+    public function getError(){
+        return $this->error;
+    }
+
 }
 
 ?>
