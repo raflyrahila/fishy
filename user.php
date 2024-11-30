@@ -1,1 +1,1 @@
-gatau lagi la asu
+tes merge nd pull requestg
