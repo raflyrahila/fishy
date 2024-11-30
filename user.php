@@ -1,1 +1,1 @@
-echo "hallo sdsdsdsdasdasdasgit c="
+gatau lagi la asu
