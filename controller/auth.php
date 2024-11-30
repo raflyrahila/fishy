@@ -33,19 +33,42 @@ class Auth{
         }
     }
 
+    public function login($email, $password) {
+        try {
+            $stmt = $this->connection->prepare("SELECT * FROM users WHERE email = :email");
+            $stmt->bindParam(':email', $email);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($user && password_verify($password, $user['password'])) {
+                $_SESSION['user_session'] = $user['id'];
+                $_SESSION['user'] = $user; // Simpan data pengguna ke session
+                return true;
+            } else {
+                $this->error = "Email atau password salah";
+                return false;
+            }
+        } catch (PDOException $e) {
+            $this->error = $e->getMessage();
+            return false;
+        }
+    }
+    
+    public function isLogin() {
+        if (isset($_SESSION['user_session'])) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function logout(){
         session_destroy();
         unset($_SESSION['user']);
         return true;
     }
 
-    public function isLogin(){
-        if(isset($_SESSION['user'])){
-            return true;
-        }else{
-            return false;
-        }
-    }
+    
 
     public function getError(){
         return $this->error;

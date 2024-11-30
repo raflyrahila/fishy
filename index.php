@@ -8,14 +8,14 @@
   </head>
   <body>
     <header>
-      <div class="logo" onclick="location.href='index.html';">Fishyman</div>
+      <div class="logo" onclick="location.href='index.php';">Fishyman</div>
       <nav>
         <ul>
           <li><a href="#">Services</a></li>
           <li><a href="#">About</a></li>
         </ul>
       </nav>
-      <a href="daftar.php" class="login">Daftar</a>
+      <a href="register.php" class="login">Daftar</a>
     </header>
 
     <main>

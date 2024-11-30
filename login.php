@@ -1,17 +1,23 @@
 <?php
-require_once 'controller/koneksi.php';
-// Memeriksa apakah form login telah dikirim
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Mendapatkan data login dari form
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+include 'controller/auth.php';
 
-
-    
-    // Jika login berhasil, redirect ke halaman yang sesuai
-    header('Location: ');
+if($user->isLogin()){
+    header('Location: index.php');
     exit;
 }
+
+if(isset($_POST['username'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    if($user->login($username, $password)){
+        header('Location: index.php');
+        exit;
+    }else{
+        $error = $user->getError();
+        var_dump($error);
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
-                <button type="submit" class="cta">Masuk</button>
+                <button type="submit" class="cta" name="kirim"">Masuk</button>
             </form>
             <p>Belum punya akun? <a href="register.php">Daftar di sini</a>.</p>
         </div>
