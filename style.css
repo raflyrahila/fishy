@@ -1,0 +1,196 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #0d1117;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1.5rem;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 3rem 1.5rem;
+}
+
+.hero-content {
+  flex: 1;
+  margin-right: 2rem;
+}
+
+.hero-image {
+  flex: 1;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta {
+  background-color: #00b894;
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.cta:hover {
+  background-color: #00a383;
+}
+
+.cta:active {
+  background-color: #00a383;
+}
+
+nav ul li a:hover {
+  color: #00b894;
+}
+
+.login {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 1.5rem;
+}
+
+.login:hover {
+  color: #00b894;
+}
+
+nav a::after,
+.login::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #00b894;
+  transition: width 0.3s;
+}
+
+nav a:hover::after,
+.login:hover::after {
+  width: 100%;
+}
+
+footer {
+  background-color: #0d1117;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  nav ul {
+    gap: 1rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-image img {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 425px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-image img {
+    margin-left: 0;
+  }
+}
+
+/* Gaya yang sama dengan contoh sebelumnya */
+/* ... */
+
+.login-container,
+.register-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1,
+.register-container h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.3rem;
+}
+
+.cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
