@@ -35,14 +35,25 @@ class Auth{
 
     public function login($email, $password) {
         try {
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
+    
             $stmt = $this->connection->prepare("SELECT * FROM users WHERE email = :email");
             $stmt->bindParam(':email', $email);
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
     
             if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user_session'] = $user['id'];
-                $_SESSION['user'] = $user; // Simpan data pengguna ke session
+                session_start(); // Mulai sesi
+                
+                // Simpan data lengkap ke sesi
+                $_SESSION['user'] = [
+                    'id' => $user['id_user'],         // ID pengguna
+                    'email' => $user['email'],   // Email pengguna
+                    'role' => $user['role'],     // Peran pengguna, jika ada
+                    'nama' => $user['nama']      // Nama pengguna, jika ada
+                ];
+                
                 return true;
             } else {
                 $this->error = "Email atau password salah";
@@ -54,18 +65,27 @@ class Auth{
         }
     }
     
+    
     public function isLogin() {
-        if (isset($_SESSION['user_session'])) {
-            return true;
-        } else {
-            return false;
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
         }
+        return isset($_SESSION['user']);
+    }
+
+    public function getUserData() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        return isset($_SESSION['user']) ? $_SESSION['user'] : null;
     }
 
     public function logout(){
         session_destroy();
         unset($_SESSION['user']);
-        return true;
+        header('Location: login.php');
+        exit;
     }
 
     
